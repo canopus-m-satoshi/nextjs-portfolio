@@ -42,7 +42,11 @@ export async function getStaticProps() {
     return data
   })(require.context('../data', true, /\.md$/))
 
+  const orderedBlogs = blogs.sort((a, b) => {
+    return b.frontmatter.id - a.frontmatter.id
+  })
+
   return {
-    props: { blogs: JSON.parse(JSON.stringify(blogs)) },
+    props: { blogs: JSON.parse(JSON.stringify(orderedBlogs)) },
   }
 }

@@ -1,22 +1,42 @@
 import matter from 'gray-matter'
+import Image from 'next/image'
 import Link from 'next/link'
 
 const Blog = (props) => {
   console.log(props)
 
   return (
-    <div>
-      <h1>Blog Page</h1>
-      {props.blogs.map((blog, index) => (
-        <div key={index}>
-          <h3>{blog.frontmatter.title}</h3>
-          <p>{blog.frontmatter.date}</p>
-          <Link href={`/blog/${blog.slug}`}>
-            <a>Read More</a>
-          </Link>
+    <>
+      <div>
+        <div>
+          <h1>Blog Page</h1>
+          <p>エンジニアの日常をお届けします</p>
+          {props.blogs.map((blog, index) => {
+            return (
+              <div key={index}>
+                <div>
+                  <h3>{blog.frontmatter.title}</h3>
+                  <p>{blog.frontmatter.excerpt}</p>
+                  <p>{blog.frontmatter.date}</p>
+                  <Link href={`/blog/${blog.slug}`}>
+                    <a>Read More</a>
+                  </Link>
+                </div>
+                <div>
+                  <Image
+                    src={blog.frontmatter.image}
+                    alt="card-image"
+                    height={300}
+                    width={1000}
+                    quality={90}
+                  />
+                </div>
+              </div>
+            )
+          })}
         </div>
-      ))}
-    </div>
+      </div>
+    </>
   )
 }
 

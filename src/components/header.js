@@ -1,11 +1,13 @@
 import Image from 'next/image'
 import Link from 'next/link'
 
+import * as style from '../styles/common.module.scss'
+
 const Header = () => {
   return (
-    <header>
-      <div>
-        <div>
+    <header className={style.headerWrapper}>
+      <div className={style.container}>
+        <div className={style.flexContainer}>
           <Link href="/">
             <a>
               <Image src="/images/logo.png" alt="logo" height={50} width={50} />

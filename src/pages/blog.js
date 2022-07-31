@@ -3,19 +3,21 @@ import Image from 'next/image'
 import Link from 'next/link'
 import Layout from '../components/layout'
 
+import * as style from '../styles/blog.module.scss'
+
 const Blog = (props) => {
   console.log(props)
 
   return (
     <Layout>
-      <div>
-        <div>
+      <div className={style.wrapper}>
+        <div className={style.container}>
           <h1>Blog Page</h1>
           <p>エンジニアの日常をお届けします</p>
           {props.blogs.map((blog, index) => {
             return (
-              <div key={index}>
-                <div>
+              <div key={index} className={style.blogCard}>
+                <div className={style.textContainer}>
                   <h3>{blog.frontmatter.title}</h3>
                   <p>{blog.frontmatter.excerpt}</p>
                   <p>{blog.frontmatter.date}</p>
@@ -23,7 +25,7 @@ const Blog = (props) => {
                     <a>Read More</a>
                   </Link>
                 </div>
-                <div>
+                <div className={style.cardImg}>
                   <Image
                     src={blog.frontmatter.image}
                     alt="card-image"
